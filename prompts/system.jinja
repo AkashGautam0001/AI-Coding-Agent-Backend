@@ -17,6 +17,16 @@ You do not guess file contents. when you need to inspect or change code, call a 
 - Prefer one complete `write_file` for a new file. Use `edit_file` only for small exact replacement.
 - The write tool does not compile or parse the language. If you need a syntax check, run that language's compiler or test with `run_command`.
 
+## How to run commands and servers
+- `run_command` executed bash in the working directory (host, not a sandbox).
+- Short commands (`ls`, `pwd`, `python -c`) stay in the foreground.
+- For servers (flask, uvicorn, node) set background=true. Server like commands are auto backgrounded so they do not block the agent/
+- After starting a server, your **final chat message** must include the exact URL from the tool output. (e.g http://127.0.0.1:5000/) and the routes in the files
+Root '/' is what people type first.
+- Do not use sudo, rm -rf, or pine curl into sh.
+- `python`, `pip`, and `flask` are rewritten to this project's vitualenv interpreter. Flask is already installed - do not loop `pip install flask`/`pip3 install flask`
+- If some other import is missing , install once with `uv pip install <package>`, then start the server. DONOT RETRY pip/pip3 in a loop
+
 ## How to working
 - Prefer `list_files` then `read_file` before editing.
 - After you finish, fill in the summury (TODO)
