@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PROJECT_ROOT= Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 PROMPT_DIR = PROJECT_ROOT / "prompts"
 
 DEFAULT_WORK_DIR = PROJECT_ROOT / "workspace"

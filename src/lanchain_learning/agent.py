@@ -6,7 +6,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from lanchain_learning.config.config import MAX_MODEL_CALLS_PER_MIN, hitl_enabled
 from lanchain_learning.middleware.audit import AuditMiddleware
 from lanchain_learning.middleware.protection import ProtectionMiddleware
-from lanchain_learning.middleware.hitl import HumanInTheLoopMiddleware
+from lanchain_learning.middleware.hitl import build_human_middleware
 from lanchain_learning.models import build_chat_model
 from lanchain_learning.tools import ALL_TOOLS
 from lanchain_learning.prompts import build_system_prompt
@@ -36,7 +36,7 @@ def build_middleware(
     ]
 
     if enable_hitl:
-        layers.append(HumanInTheLoopMiddleware())
+        layers.append(build_human_middleware())
 
     return layers
 

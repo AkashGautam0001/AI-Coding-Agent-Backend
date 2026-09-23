@@ -1,9 +1,9 @@
-from jinja2 import Environment, FileSystemBytecodeCache, select_autoescape
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from lanchain_learning.config.config import PROMPT_DIR, AGENT_NAME, get_work_dir
 from lanchain_learning.tools import tool_catalog
 
 _env = Environment(
-    loader=FileSystemBytecodeCache(PROMPT_DIR),
+    loader=FileSystemLoader(PROMPT_DIR),
     auto_reload=select_autoescape(enabled_extensions=()),
     trim_blocks=True,
     lstrip_blocks=True
