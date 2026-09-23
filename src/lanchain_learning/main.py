@@ -9,3 +9,16 @@ import uuid
 
 def chat() -> None:
     work_dir = get_work_dir()
+    work_dir.mkdir(parents=True, exist_ok=True)
+    provider = select_provider()
+    checkpointer = make_checkpointer()
+    agent = build_agent(checkpointer=checkpointer)
+    config = thread_config(str(uuid.uuid4()))
+
+    print(build_greeting())
+    print(f"Provider : {provider.name} . {provider.model}")
+    print(f"Working directory: {work_dir}")
+    print(f"Type 'exit', 'quit', 'q' to stop.")
+
+if __name__ == "__main__":
+    chat()

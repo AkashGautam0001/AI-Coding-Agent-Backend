@@ -15,7 +15,7 @@ class BackgroundJob:
     log_path: str
     proc: Any = field(default=None, repr=False)
 
-_JOBS = dict(int, BackgroundJob) = ()
+_JOBS: dict[int, BackgroundJob] = {}
 
 def register(job: BackgroundJob) -> None:
     _JOBS[job.pid] = job

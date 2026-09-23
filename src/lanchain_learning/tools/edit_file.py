@@ -1,5 +1,6 @@
 from langchain.tools import tool
-from lanchain_learning.tools.text import prepare_file_content, resolve_work_path
+from lanchain_learning.tools.paths import resolve_work_path
+from lanchain_learning.tools.text import prepare_file_content
 
 @tool
 

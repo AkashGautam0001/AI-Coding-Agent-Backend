@@ -29,12 +29,9 @@ SERVER_PATTERNS = (
     r"\bnpm\s+(?:run\s+)?(?:dev|start)\b",
 )
 
-_PIP_PREFIX = re.compile(
-    r""
-)
-
-_PYTHON_PREFIX = re.compile()
-_FLASK_PREFIX = re.compile()
+_PIP_PREFIX = re.compile(r"^pip(?:\.exe)?\s+")
+_PYTHON_PREFIX = re.compile(r"^python(?:3)?(?:\.exe)?\s+")
+_FLASK_PREFIX = re.compile(r"^flask(?:\.exe)?\s+")
 
 def deny_command(command: str) -> str | None:
     stripped = command.strip()
@@ -58,8 +55,8 @@ def rewrite_command(command: str) -> str:
     if _PIP_PREFIX.match(stripped):
         return _PIP_PREFIX.sub(f"{exe} -m pip", stripped, count=1)
 
-    if _PIP_PREFIX.match(stripped):
-        return _PIP_PREFIX.sub(exe, stripped, count=1)
+    if _PYTHON_PREFIX.match(stripped):
+        return _PYTHON_PREFIX.sub(exe + " ", stripped, count=1)
 
     if _FLASK_PREFIX.match(stripped):
         return _FLASK_PREFIX.sub(f"{exe} -m flask", stripped, count=1)
