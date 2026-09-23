@@ -55,5 +55,5 @@ def build_agent(
         middleware=build_middleware(enable_hitl=use_hitl),
         response_format=ProviderStrategy(TurnSummary),
         checkpointer=checkpointer or make_checkpointer(),
-        name="Coding Agent"
+        name="CodingAgent"
     )

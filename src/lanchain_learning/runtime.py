@@ -52,7 +52,7 @@ def parse_invoke_result(result: Any) -> AgentTurnResult:
 
 def start_turn(agent, user_text: str, config: dict) -> AgentTurnResult:
     result = agent.invoke(
-        {"message" : [{"role" : "user", "context": user_text}]},
+        {"messages" : [{"role" : "user", "content": user_text}]},
         config=config,
         version="v2"
     )
