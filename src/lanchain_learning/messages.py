@@ -5,7 +5,7 @@ def user_input(text:str) -> dict[str, str]:
     """OpenAI style dict for user input"""
     return {"role": "user", "content" : text}
 
-def last_at_text(messages: list[Any]) -> str:
+def last_ai_text(messages: list[Any]) -> str:
     """Get the laset assistant message from the list of messages"""
     for message in reversed[Any](messages):
         if not isinstance(message, AIMessage):
